@@ -16,7 +16,7 @@ function RecipeViewer({ data, closeModal }) {
       >
         Close
       </button>
-      <div className="bg-white flex flex-col items-center justify-center text-black px-8 py-4  rounded-lg gap-2 ">
+      <div className="bg-white flex flex-col items-center justify-center text-black px-8 py-4  rounded-lg gap-2">
         <img
           src={image}
           className="h-[250px] w-[250px] border border-0 rounded-full"
@@ -27,8 +27,8 @@ function RecipeViewer({ data, closeModal }) {
       <div>{type}</div>
       <div>
         <ul>
-          {ingredients.map((data, index) => {
-            return <li key={index}>{data}</li>;
+          {ingredients.map((item, index) => {
+            return <li key={index}>{item}</li>;
           })}
         </ul>
       </div>
