@@ -1,19 +1,26 @@
 import React from "react";
 
-const RecipeCard = ({ data, opeansessame, setSelectedRecipe }) => {
+const RecipeCard = ({ data, opensessame, setSelectedRecipe }) => {
   const item = data;
 
   const OpenRecipeViewer = () => {
-    opeansessame(true);
+    opensessame(true);
     setSelectedRecipe(data);
   };
 
   return (
-    <div>
-      <img src={item.image} />
-      <div> {item.name}</div>
-      <div> {item.type}</div>
-      <button onClick={OpenRecipeViewer}>Know More</button>
+    <div className="">
+      <div className="flex flex-col items-center justify-center gap-3 my-3 bg-white text-black ">
+        <img src={item.image} className="h-[250px] w-[250px] rounded" />
+        <div> {item.name}</div>
+        <div className="italic"> {item.type}</div>
+        <button
+          className="border border-0 rounded-1g bg-black text-white p-2 mb-3"
+          onClick={OpenRecipeViewer}
+        >
+          Know More
+        </button>
+      </div>
     </div>
   );
 };
