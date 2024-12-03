@@ -3,7 +3,7 @@ import RecipeCard from "./RecipeCard";
 import RecipeViewer from "./RecipeViewer";
 import { useState } from "react";
 
-const recipes = [
+const ori_Recipes = [
   {
     name: "Carbonara",
     type: "Pasta",
@@ -154,13 +154,47 @@ const galleryStyle = {
 };
 
 const RecipeGallery = () => {
+  const [recipes, setRecipes] = useState(ori_Recipes);
+
   const [showRecipe, setShowRecipe] = useState(false);
 
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleOnChange = (e) => {
+    console.log("Search VAlue ChangeD:", e.target.value);
+    setSearchValue(e.target.value);
+  };
+
+  const searchFunction = () => {
+    console.log("Search function called with value:", searchValue);
+    const filteredItems = ori_Recipes.filter((item) => {
+      return item.name.toLowerCase().includes(searchValue);
+    });
+    setRecipes(filteredItems);
+  };
+
   return (
     <div className="flex flex-col align-center gap-3 flex-no-wrap">
-      <h1>Recipe Gallery</h1>
+      <h1 className="font-bold">Recipe Gallery</h1>
+      <input
+        type="search"
+        id="default-search"
+        className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Search Dishes"
+        required
+        value={searchValue}
+        onChange={handleOnChange}
+      />
+      <button
+        type="button"
+        className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        onClick={searchFunction} // Correctly references the searchFunction
+      >
+        Search
+      </button>
+
       <div className="flex gap-3 justify-center align-center mt-5 flex-wrap">
         {recipes.map((item) => {
           return (

@@ -27,8 +27,8 @@ function RecipeViewer({ data, closeModal }) {
       <div>{type}</div>
       <div>
         <ul>
-          {ingredients.map((item, index) => {
-            return <li key={index}>{item}</li>;
+          {ingredients.map((data, index) => {
+            return <li key={index}>{data}</li>;
           })}
         </ul>
       </div>
